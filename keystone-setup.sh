@@ -40,12 +40,12 @@ CINDER_USER=$(keystone user-create --name=cinder --pass="$SERVICE_PASSWORD" --te
 ADMIN_ROLE=$(keystone role-create --name=admin | grep " id " | get_field 2)
 MEMBER_ROLE=$(keystone role-create --name=Member | grep " id " | get_field 2)
 # Add Roles to Users in Tenants
-keystone user-role-add --user-id $ADMIN_USER --role-id $ADMIN_ROLE --tenantid $ADMIN_TENANT
+keystone user-role-add --user-id $ADMIN_USER --role-id $ADMIN_ROLE --tenant-id $ADMIN_TENANT
 keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $NOVA_USER --role-id $ADMIN_ROLE
 keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $GLANCE_USER --role-id $ADMIN_ROLE
 keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $QUANTUM_USER --role-id $ADMIN_ROLE
 keystone user-role-add --tenant-id $SERVICE_TENANT --user-id $CINDER_USER --role-id $ADMIN_ROLE
-keystone user-role-add --tenant-id $DEMO_TENANT --user-id $DEMO_USER --roleid $MEMBER_ROLE
+keystone user-role-add --tenant-id $DEMO_TENANT --user-id $DEMO_USER --role-id $MEMBER_ROLE
 # Create services
 COMPUTE_SERVICE=$(keystone service-create --name nova --type compute --description 'OpenStack Compute Service' | grep " id " | get_field 2)
 VOLUME_SERVICE=$(keystone service-create --name cinder --type volume --description 'OpenStack Volume Service' | grep " id " | get_field 2)
