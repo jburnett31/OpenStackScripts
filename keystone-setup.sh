@@ -26,14 +26,9 @@ function get_field() {
  done
 }
 # Tenants
-ADMIN_TENANT=$(keystone tenant-create --name=admin | grep " id " | get_field
- 2)
-DEMO_TENANT=$(keystone tenant-create --name=demo | grep " id " | get_field
- 2)
-SERVICE_TENANT=$(keystone tenant-create --name=$SERVICE_TENANT_NAME | grep "
- id " | get_field 2)
+ADMIN_TENANT=$(keystone tenant-create --name=admin | grep " id " | get_field 2)
+DEMO_TENANT=$(keystone tenant-create --name=demo | grep " id " | get_field 2)
+SERVICE_TENANT=$(keystone tenant-create --name=$SERVICE_TENANT_NAME | grep " id " | get_field 2)
 # Users
-ADMIN_USER=$(keystone user-create --name=admin --pass="$ADMIN_PASSWORD" --
-email=admin@domain.com | grep " id " | get_field 2)
-DEMO_USER=$(keystone user-create --name=demo --pass="$DEMO_PASSWORD" --
-email=demo@domain.com --tenant-id=$DEMO_TENANT | grep " id " | get_field 2)
+ADMIN_USER=$(keystone user-create --name=admin --pass="$ADMIN_PASSWORD" --email=admin@domain.com | grep " id " | get_field 2)
+DEMO_USER=$(keystone user-create --name=demo --pass="$DEMO_PASSWORD" --email=demo@domain.com --tenant-id=$DEMO_TENANT | grep " id " | get_field 2)
